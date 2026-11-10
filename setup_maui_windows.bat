@@ -271,9 +271,16 @@ set "RUN_BAT=%ROOT%run_windows.bat"
 >>"!RUN_BAT!" echo cd /d "%%~dp0"
 >>"!RUN_BAT!" echo set "DOTNET=dotnet"
 >>"!RUN_BAT!" echo if exist "%%~dp0.dotnet\dotnet.exe" set "DOTNET=%%~dp0.dotnet\dotnet.exe"
->>"!RUN_BAT!" echo "%%DOTNET%%" build -t:Run -f "!TFM!" "%%~dp0MauiApp3\MauiApp3.csproj"
+>>"!RUN_BAT!" echo set "TFM=!TFM!"
+>>"!RUN_BAT!" echo set "APP=%%~dp0MauiApp3\bin\Debug\!TFM!\win10-x64\MauiApp3.exe"
+>>"!RUN_BAT!" echo "%%DOTNET%%" build -f "%%TFM%%" "%%~dp0MauiApp3\MauiApp3.csproj"
+>>"!RUN_BAT!" echo if errorlevel 1 goto :FAILED
+>>"!RUN_BAT!" echo if not exist "%%APP%%" goto :FAILED
+>>"!RUN_BAT!" echo start "" "%%APP%%"
+>>"!RUN_BAT!" echo exit /b 0
+>>"!RUN_BAT!" echo :FAILED
 >>"!RUN_BAT!" echo echo.
->>"!RUN_BAT!" echo if errorlevel 1 echo [BLAD] Nie udalo sie uruchomic aplikacji.
+>>"!RUN_BAT!" echo echo [BLAD] Nie udalo sie uruchomic aplikacji.
 >>"!RUN_BAT!" echo pause
 
 echo.

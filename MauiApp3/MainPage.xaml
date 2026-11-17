@@ -1,89 +1,57 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp3.MainPage">
-
+             x:Class="MauiApp3.MainPage"
+             Title="Menedżer graczy">
     <ScrollView>
-        <VerticalStackLayout
-            Padding="29"
-            Spacing="15">
-            <Label 
-                Text="Dodaj gracza"
-                FontSize="24"
-                FontAttributes="Bold"/>
-            <Entry
-                Placeholder="Nazwa gracza"
-                Text="{Binding PlayerName}"/>
-            <Entry
-                Placeholder="Poziom gracza"
-                Keyboard="Numeric"
-                Text="{Binding PlayerLevel}"/>
-            <Button
-                Text="Dodaj gracza"
-                Command="{Binding AddPlayerCommandButton}" />
-            
-            
-            
-            
+        <VerticalStackLayout Padding="24" Spacing="14" MaximumWidthRequest="720" HorizontalOptions="Center">
+            <Label Text="MENEDŻER GRACZY" FontSize="13" CharacterSpacing="2" TextColor="{StaticResource Primary}" FontAttributes="Bold" />
+            <Label Text="Twoja lista graczy" FontSize="30" FontAttributes="Bold" />
+            <Label Text="Dodawaj graczy, śledź ich poziomy i wyszukuj po ID." TextColor="Gray" />
 
-            <Label
-                Text="Lista graczy"
-                FontSize="24"
-                FontAttributes="Bold"
-                Margin="0,20,0,0"/>
-            <CollectionView
-    ItemsSource="{Binding Players}"
-    HeightRequest="250">
+            <Border Padding="18" StrokeShape="RoundRectangle 16" Stroke="#E4E7EC">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Dodaj gracza" FontSize="20" FontAttributes="Bold" />
+                    <Entry Placeholder="Nazwa gracza" Text="{Binding PlayerName}" ReturnType="Next" />
+                    <Entry Placeholder="Poziom (liczba całkowita od 0)" Keyboard="Numeric" Text="{Binding PlayerLevel}" ReturnType="Done" />
+                    <Button Text="Dodaj do listy" Command="{Binding AddPlayerCommandButton}" />
+                    <Label Text="{Binding StatusMessage}" TextColor="{StaticResource Primary}" />
+                </VerticalStackLayout>
+            </Border>
 
+            <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
+                <Label Text="Gracze" FontSize="22" FontAttributes="Bold" />
+                <Label Grid.Column="1" Text="{Binding PlayerCount, StringFormat='{0} graczy'}" VerticalOptions="Center" TextColor="Gray" />
+            </Grid>
+            <CollectionView ItemsSource="{Binding Players}" SelectionMode="None" EmptyView="Brak graczy na liście.">
                 <CollectionView.ItemTemplate>
-
                     <DataTemplate>
-
-                        <Grid
-                Padding="10"
-                ColumnDefinitions="50,*,100">
-
-                            <Label
-                    Grid.Column="0"
-                    Text="{Binding Id}" />
-
-                            <Label
-                    Grid.Column="1"
-                    Text="{Binding Name}" />
-
-                            <Label
-                    Grid.Column="2"
-                    Text="{Binding Level}" />
-
-                        </Grid>
-
+                        <Border Padding="14,10" Margin="0,4" StrokeShape="RoundRectangle 12" Stroke="#E4E7EC">
+                            <Grid ColumnDefinitions="54,*,Auto" ColumnSpacing="10">
+                                <Border Grid.Column="0" WidthRequest="42" HeightRequest="42" StrokeShape="RoundRectangle 21" BackgroundColor="#EEF2FF" StrokeThickness="0">
+                                    <Label Text="{Binding Id}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                                    <Label Text="Poziom gracza" FontSize="12" TextColor="Gray" />
+                                </VerticalStackLayout>
+                                <Label Grid.Column="2" Text="{Binding Level}" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
                     </DataTemplate>
-
                 </CollectionView.ItemTemplate>
-
             </CollectionView>
 
-
-            <Label
-                Text="Znajdź gracza"
-                FontSize="24"
-                FontAttributes="Bold"
-                Margin="0,20,0,0"/>
-
-            <Entry
-                Placeholder="Podaj Id gracza"
-                Keyboard="Numeric"
-                Text="{Binding PlayerId}"/>
-            <Button
-                Text="Szukaj"
-                Command="{Binding FindPlayerCommandButton}"/>
-            <Label
-                Text="Wynik"
-                FontAttributes="Bold"/>
-            <Label
-                Text="{Binding SearchResult}"
-                FontSize="18"/>
+            <Border Padding="18" StrokeShape="RoundRectangle 16" Stroke="#E4E7EC" Margin="0,8,0,20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Znajdź gracza" FontSize="20" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Entry Placeholder="Wpisz ID" Keyboard="Numeric" Text="{Binding PlayerId}" />
+                        <Button Grid.Column="1" Text="Szukaj" Command="{Binding FindPlayerCommandButton}" />
+                    </Grid>
+                    <Label Text="{Binding SearchResult}" />
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

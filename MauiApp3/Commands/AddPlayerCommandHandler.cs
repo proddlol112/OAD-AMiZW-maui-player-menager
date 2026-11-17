@@ -17,12 +17,14 @@ namespace MauiApp3.Commands
         {
             Player player = new Player
             {
-                Id = _playerRepository.Players.Count + 1,
+                Id = _playerRepository.Players.Count == 0
+                    ? 1
+                    : _playerRepository.Players.Max(player => player.Id) + 1,
                 Name = command.Name,
                 Level = command.Level,
             };
 
-            _playerRepository.Players.Add(player);
+            _playerRepository.Add(player);
         }
     }
 }

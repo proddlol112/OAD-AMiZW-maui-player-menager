@@ -9,7 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <ApplicationTitle>MauiApp3</ApplicationTitle>
+    <ApplicationTitle>Player Manager - proddlol112</ApplicationTitle>
+    <Authors>proddlol112</Authors>
     <ApplicationId>com.companyname.mauiapp3</ApplicationId>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>

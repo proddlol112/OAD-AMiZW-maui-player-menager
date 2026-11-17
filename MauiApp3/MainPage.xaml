@@ -5,7 +5,7 @@
              Title="Menedżer graczy">
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="14" MaximumWidthRequest="720" HorizontalOptions="Center">
-            <Label Text="MENEDŻER GRACZY" FontSize="13" CharacterSpacing="2" TextColor="{StaticResource Primary}" FontAttributes="Bold" />
+            <Label Text="MENEDŻER GRACZY · proddlol112" FontSize="13" CharacterSpacing="2" TextColor="{StaticResource Primary}" FontAttributes="Bold" />
             <Label Text="Twoja lista graczy" FontSize="30" FontAttributes="Bold" />
             <Label Text="Dodawaj graczy, śledź ich poziomy i wyszukuj po ID." TextColor="Gray" />
 

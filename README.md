@@ -1,5 +1,7 @@
 # OAD-AMiZW Maui Player Manager
 
+Autor: **proddlol112**
+
 ## Uruchomienie w Windows
 
 1. Uruchom `setup_maui_windows.bat`, aby przygotować środowisko.

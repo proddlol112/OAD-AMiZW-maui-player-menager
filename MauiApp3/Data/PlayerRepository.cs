@@ -22,6 +22,31 @@ public class PlayerRepository
         SavePlayers();
     }
 
+    /// <summary>Updates the name and level of an existing player.</summary>
+    /// <param name="player">Player containing the ID and updated values.</param>
+    /// <returns>True when the player exists and was saved; otherwise false.</returns>
+    public bool Update(Player player)
+    {
+        var existing = Players.FirstOrDefault(item => item.Id == player.Id);
+        if (existing is null) return false;
+        existing.Name = player.Name;
+        existing.Level = player.Level;
+        SavePlayers();
+        return true;
+    }
+
+    /// <summary>Removes a player from the saved list.</summary>
+    /// <param name="id">ID of the player to remove.</param>
+    /// <returns>True when a player was removed; otherwise false.</returns>
+    public bool Remove(int id)
+    {
+        var player = Players.FirstOrDefault(item => item.Id == id);
+        if (player is null) return false;
+        Players.Remove(player);
+        SavePlayers();
+        return true;
+    }
+
     private List<Player> LoadPlayers()
     {
         try
